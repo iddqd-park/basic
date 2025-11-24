@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MSX BASIC Web</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="msx-container">
-        <div id="screen"></div>
+    <div id="monitor-wrapper">
+        <img src="image/msx.jpg" id="monitor-image" alt="MSX Monitor">
+        <div id="msx-container">
+            <div id="screen"></div>
+        </div>
     </div>
-    <input type="text" id="virtual-keyboard" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+    <!-- 실제 입력은 이 숨겨진 인풋으로 받습니다 (모바일/PC 공통) -->
+    <input type="text"
+           id="virtual-keyboard"
+           autocomplete="off"
+           autocorrect="off"
+           autocapitalize="off"
+           spellcheck="false">
+
+    <script src="config.js"></script>
     <script src="msx.js"></script>
 </body>
 </html>
