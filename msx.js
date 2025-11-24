@@ -29,10 +29,11 @@ class MSX {
     init() {
         this.applyConfig();
 
-        this.print("MSX BASIC for Web");
-        this.print("(C) 2025");
-        this.print("");
-        this.print("READY.");
+        this.print("MSX BASIC Simulator version  1.0");
+        this.print("Copyright 2025 by IDDQD Internet");
+        this.print("66618 Bytes free");
+        this.print("Disk BASIC version 1.0");
+        this.print("Ok");
 
         this.render();
 
@@ -52,6 +53,41 @@ class MSX {
         // 리사이즈 이벤트 처리 (폰트 크기 조절 등)
         window.addEventListener('resize', () => this.adjustLayout());
         this.adjustLayout();
+
+        // 펑션키 이벤트 처리
+        const fKeys = document.querySelectorAll('#function-keys button');
+        fKeys.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // 입력창 포커스 뺏기 방지 (필요시)
+                const cmd = btn.getAttribute('data-cmd');
+                this.handleFunctionKey(cmd);
+                this.inputElement.focus();
+            });
+        });
+    }
+
+    handleFunctionKey(cmd) {
+        // MSX 스타일: 펑션키 누르면 해당 명령어가 입력됨
+        // RUN 같은 경우 바로 실행되기도 함 (보통 \r 포함)
+
+        let text = "";
+        let autoEnter = false;
+
+        switch (cmd) {
+            case 'color': text = "COLOR "; break;
+            case 'auto': text = "AUTO "; break;
+            case 'goto': text = "GOTO "; break;
+            case 'list': text = "LIST "; autoEnter = true; break; // 편의상 바로 실행
+            case 'run': text = "RUN"; autoEnter = true; break;
+        }
+
+        if (text) {
+            this.currentLine = text;
+            this.render();
+            if (autoEnter) {
+                this.processLine();
+            }
+        }
     }
 
     applyConfig() {

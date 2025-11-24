@@ -25,13 +25,25 @@ body {
     min-height: 100vh;
 }
 
+/* 레이아웃 컨테이너 */
+#main-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+    padding: 20px;
+}
+
 /* MSX 화면 컨테이너 (모니터 이미지 위) */
 #monitor-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     /* 이미지 해상도에 따라 조절 */
-    margin: 0 auto;
+    flex: 2;
 }
 
 #monitor-image {
@@ -41,11 +53,111 @@ body {
     -webkit-user-drag: none;
 }
 
+/* 매뉴얼 섹션 */
+#manual-wrapper {
+    flex: 1;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    /* 같은 폰트 사용 */
+    background: rgba(20, 82, 219, 0.2);
+    /* 은은한 파란 배경 */
+    border: 2px solid var(--msx-border);
+    padding: 20px;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    /* 스크롤 처리 */
+    max-height: 600px;
+    /* 모니터 이미지 높이와 비슷하게 맞춤 */
+    overflow-y: auto;
+
+    /* 스크롤바 스타일링 (Webkit) */
+    scrollbar-width: thin;
+    scrollbar-color: var(--msx-blue) #000;
+}
+
+#manual-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+#manual-wrapper::-webkit-scrollbar-track {
+    background: #000;
+}
+
+#manual-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--msx-blue);
+    border: 1px solid #fff;
+}
+
+#manual-wrapper h1 {
+    margin-top: 0;
+    color: #ffff55;
+    /* 노란색 포인트 */
+    font-size: 2em;
+    text-shadow: 2px 2px 0 #000;
+}
+
+#manual-wrapper .provider {
+    font-size: 1.2em;
+    color: #aaa;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+}
+
+#manual-wrapper .provider a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#manual-wrapper h2 {
+    color: #55ffff;
+    /* 하늘색 포인트 */
+    border-bottom: 1px dashed #555;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+#manual-wrapper ul {
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+#manual-wrapper code {
+    background: #000;
+    padding: 2px 5px;
+    color: #0f0;
+}
+
+#manual-wrapper pre {
+    background: #000;
+    padding: 10px;
+    border: 1px solid #555;
+    color: #0f0;
+    white-space: pre-wrap;
+}
+
+/* 반응형 처리 */
+@media (max-width: 1000px) {
+    #main-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #manual-wrapper {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 #msx-container {
     position: absolute;
     /* top, left, width, height will be set by JS via config.js */
-    background-color: #000;
+    background-color: transparent;
+    /* 배경을 파란색으로 변경하여 틈새가 있어도 검은색이 안 보이게 함 */
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     /* border, padding removed to fit perfectly in the monitor bezel */
 }
 
@@ -53,8 +165,9 @@ body {
 #screen {
     position: relative;
     width: 100%;
-    height: 100%;
-    background-color: var(--msx-blue);
+    flex: 1;
+    /* 남은 공간 모두 차지 */
+    background-color: transparent;
     color: var(--msx-fg);
     padding: 1%;
     /* 약간의 패딩 */
@@ -65,19 +178,44 @@ body {
     white-space: pre-wrap;
 }
 
-/* CRT 스캔라인 느낌 */
-#screen::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(to bottom,
-            rgba(0, 0, 0, 0.15),
-            rgba(0, 0, 0, 0.15) 1px,
-            transparent 1px,
-            transparent 3px);
-    mix-blend-mode: multiply;
+/* 하단 펑션키 메뉴 */
+#function-keys {
+    position: relative;
+    /* absolute 제거 */
+    /* bottom: 0; */
+    /* left: 0; */
+    width: 100%;
+    height: 1.2em;
+    /* 한 줄 높이 */
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    padding: 0 1%;
+    font-size: inherit;
+    /* 부모 폰트 사이즈 상속 */
+    z-index: 10;
+    flex-shrink: 0;
+    /* 크기 줄어들지 않게 */
 }
+
+#function-keys button {
+    background: none;
+    border: none;
+    color: var(--msx-fg);
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 1em;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+#function-keys button:hover {
+    background-color: var(--msx-fg);
+    color: var(--msx-blue);
+}
+
 
 /* 숨겨진 입력창 (실제 포커스 대상) */
 #virtual-keyboard {
