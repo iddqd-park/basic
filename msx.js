@@ -111,6 +111,23 @@ class MSX {
             const fontSize = Math.floor(h / 26);
             this.screenElement.style.fontSize = fontSize + 'px';
         }
+
+        // PC 모드일 때 매뉴얼 높이를 모니터 이미지 높이와 맞춤
+        const manual = document.getElementById('manual-wrapper');
+        const monitorImg = document.getElementById('monitor-image');
+
+        if (manual && monitorImg) {
+            if (window.innerWidth > 1000) {
+                // PC: 모니터 높이에 맞춤
+                const imgHeight = monitorImg.clientHeight;
+                if (imgHeight > 0) {
+                    manual.style.height = imgHeight + 'px';
+                }
+            } else {
+                // Mobile: 높이 자동 (페이지 스크롤)
+                manual.style.height = 'auto';
+            }
+        }
     }
 
     escapeText(text) {

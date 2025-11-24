@@ -68,7 +68,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
     /* 스크롤 처리 */
-    max-height: 600px;
+    /* max-height: 600px; */
     /* 모니터 이미지 높이와 비슷하게 맞춤 */
     overflow-y: auto;
 
