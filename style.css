@@ -139,6 +139,11 @@ body {
 }
 
 /* 반응형 처리 */
+/* PC에서는 버튼 숨김 (기본값) */
+#mobile-manual-btn {
+    display: none;
+}
+
 @media (max-width: 1000px) {
     #main-layout {
         flex-direction: column;
@@ -148,8 +153,35 @@ body {
     #manual-wrapper {
         max-width: 100%;
         width: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* 모바일에서는 매뉴얼 내용 숨기고 버튼만 표시 */
+    #manual-wrapper>*:not(#mobile-manual-btn) {
+        display: none;
+    }
+
+    #mobile-manual-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: var(--msx-blue);
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.2em;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        margin-top: 10px;
     }
 }
+
+
 
 #msx-container {
     position: absolute;

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSX BASIC Manual</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            display: block; /* Override flex display from style.css if needed */
+            height: auto;
+            min-height: 100vh;
+        }
+        #manual-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            height: auto;
+            overflow: visible;
+        }
+        /* Override style.css hiding rule for mobile */
+        @media (max-width: 1000px) {
+            #manual-wrapper > * {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="manual-wrapper">
+        <h1>MSX Basic 시뮬레이터</h1>
+        <p class="provider">IDDQD 인터넷 제공 / <a href="https://iddqd.kr" target="_blank">iddqd.kr</a></p>
+        
+        <div class="manual-content">
+            <h2>기본 명령어</h2>
+            <ul>
+                <li><strong>PRINT "문자열"</strong>: 화면에 텍스트를 출력합니다. <code>? "문자열"</code>로 줄여 쓸 수 있습니다.</li>
+                <li><strong>GOTO [줄번호]</strong>: 프로그램의 흐름을 해당 줄 번호로 이동시킵니다.</li>
+                <li><strong>LIST [시작]-[끝]</strong>: 메모리에 있는 프로그램 코드를 보여줍니다.</li>
+                <li><strong>RUN [줄번호]</strong>: 프로그램을 실행합니다. 줄번호를 지정하면 그 줄부터 시작합니다.</li>
+                <li><strong>CLS</strong>: 화면의 모든 내용을 지웁니다.</li>
+                <li><strong>NEW</strong>: 현재 작성된 프로그램을 메모리에서 지웁니다.</li>
+                <li><strong>INPUT "질문"; 변수</strong>: 사용자로부터 값을 입력받아 변수에 저장합니다.</li>
+                <li><strong>REM 설명</strong>: 주석입니다. 프로그램 실행에 영향을 주지 않습니다.</li>
+                <li><strong>END</strong>: 프로그램 실행을 종료합니다.</li>
+            </ul>
+
+            <h2>변수와 연산</h2>
+            <ul>
+                <li><strong>변수</strong>: A~Z (숫자), A$~Z$ (문자열) 등을 사용할 수 있습니다. (예: <code>A=10</code>, <code>N$="MSX"</code>)</li>
+                <li><strong>산술 연산</strong>: +, -, *, / (예: <code>PRINT 10 * 5</code>)</li>
+                <li><strong>비교 연산</strong>: =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;= (IF문에서 사용)</li>
+            </ul>
+
+            <h2>제어문</h2>
+            <ul>
+                <li><strong>IF 조건 THEN 명령</strong>: 조건이 참이면 뒤의 명령(또는 줄번호)을 실행합니다.<br>
+                    <code>IF A=10 THEN PRINT "TEN"</code><br>
+                    <code>IF A&lt;5 THEN 100</code>
+                </li>
+                <li><strong>FOR 변수=시작 TO 끝 STEP 증감 ... NEXT</strong>: 반복문입니다.<br>
+                    <code>10 FOR I=1 TO 5</code><br>
+                    <code>20 PRINT I</code><br>
+                    <code>30 NEXT I</code>
+                </li>
+                <li><strong>GOSUB 줄번호 ... RETURN</strong>: 서브루틴을 호출하고 복귀합니다.</li>
+            </ul>
+
+            <h2>저장 및 불러오기 (브라우저 저장소)</h2>
+            <ul>
+                <li><strong>SAVE "이름"</strong>: 프로그램을 브라우저에 저장합니다.</li>
+                <li><strong>LOAD "이름"</strong>: 저장된 프로그램을 불러옵니다.</li>
+                <li><strong>FILES</strong>: 저장된 파일 목록을 보여줍니다.</li>
+            </ul>
+
+            <h2>예제: 구구단 출력</h2>
+            <pre>
+10 INPUT "단 입력: "; D
+20 FOR I = 1 TO 9
+30 PRINT D; " * "; I; " = "; D*I
+40 NEXT I
+RUN
+            </pre>
+
+            <h2>예제: 숫자 맞추기 게임</h2>
+            <pre>
+10 N = 7
+20 INPUT "숫자를 맞춰보세요(1-10): "; G
+30 IF G = N THEN GOTO 60
+40 IF G < N THEN PRINT "더 큰 수입니다."
+50 IF G > N THEN PRINT "더 작은 수입니다."
+55 GOTO 20
+60 PRINT "정답입니다!"
+            </pre>
+            
+            <h2>팁</h2>
+            <p>하단의 메뉴 버튼을 클릭하면 명령어가 자동으로 입력됩니다. 모바일에서는 화면을 터치하여 키보드를 열 수 있습니다.</p>
+        </div>
+    </div>
+</body>
+</html>
