@@ -1,63 +1,48 @@
-# MSX BASIC Web Simulator
+# MSX BASIC Web
 
-![MSX BASIC Splash](./splash.jpg)
+[English](README.md) | [한국어](README.ko.md)
 
-[한국어 문서](./README.ko.md)
+A pure HTML/JS implementation of the MSX BASIC interpreter. Experience the retro computing environment directly in your browser with standard commands and a classic blue-screen interface.
 
-**MSX BASIC Web** is a web-based simulator that recreates the classic MSX BASIC experience right in your browser. It allows you to write, run, and learn BASIC programming with a retro monitor interface.
+## Our Philosophy
+IDDQD Internet builds zero-DB, zero-signup tools powered by pure HTML/JS for instant browser execution. Even with AI features, we keep it stateless and record-free.
 
-## ✨ Key Features
+### Run directly in browser
+**[https://app.iddqd.kr/basic/](https://app.iddqd.kr/basic/)**
+*(No installation required. Runs instantly.)*
 
-- **100% Client-Side**: Runs entirely in the browser with Vanilla JavaScript.
-- **No Server Storage**: Your code is stored only in your browser's local storage (`localStorage`). No data is sent to any server.
-- **No Installation & No Login**: Just visit the URL and start coding immediately.
-- **Retro Experience**: Features a CRT monitor overlay and classic blue screen aesthetics.
-- **Mobile Support**: Includes a virtual keyboard helper for coding on mobile devices.
+![Splash](splash.jpg)
 
-## 🕹️ Supported Commands
+## Features
 
-This simulator supports a subset of MSX BASIC commands:
+- **Zero Installation**: Runs entirely in the browser.
+- **Classic MSX Experience**: Replicates the blue screen, font, and feel of MSX BASIC.
+- **Standard Commands**: Supports foundational commands like `PRINT`, `GOTO`, `LIST`, `RUN`, `INPUT`, `CLS`, and `NEW`.
+- **On-screen Function Keys**: Clickable interface elements for quick command access (`color`, `auto`, `goto`, `list`, `run`).
+- **Lightweight**: Built with no external dependencies, ensuring fast load times and clean code.
 
-- **System**: `RUN`, `LIST`, `NEW`, `CLS`, `SAVE`, `LOAD`, `FILES`
-- **Output**: `PRINT` (or `?`)
-- **Flow Control**: `GOTO`, `GOSUB` ... `RETURN`, `IF` ... `THEN`, `FOR` ... `NEXT`, `END`
-- **Input**: `INPUT`
-- **Variables**: Numeric and String (e.g., `A$`) variables supported.
+## Usage
 
-## 🚀 How to Use
+1. **Start Coding**: Type BASIC commands directly into the virtual monitor.
+2. **Execute**: Type `RUN` to execute your program.
+3. **Manage**: Use `LIST` to view your current program or `NEW` to clear the memory.
 
-1. **Type Code**: Enter BASIC commands in the input field.
-2. **Run**: Type `RUN` to execute your program.
-3. **Save/Load**: Use `SAVE "TITLE"` and `LOAD "TITLE"` to manage your programs locally.
-4. **Function Keys**: Click the on-screen buttons to quickly type common commands (`COLOR`, `AUTO`, `GOTO`, `LIST`, `RUN`).
-
-## 📝 Example Code
-
-**Multiplication Table**
+### Example Code
 ```basic
-10 INPUT "DAN: "; D
-20 FOR I = 1 TO 9
-30 PRINT D; " * "; I; " = "; D*I
-40 NEXT I
+10 PRINT "HELLO WORLD"
+20 GOTO 10
 RUN
 ```
 
-**Guess the Number**
-```basic
-10 N = 7
-20 INPUT "GUESS(1-10): "; G
-30 IF G = N THEN GOTO 60
-40 IF G < N THEN PRINT "BIGGER"
-50 IF G > N THEN PRINT "SMALLER"
-55 GOTO 20
-60 PRINT "CORRECT!"
-```
+## Tech Stack
 
-## 🛠️ Technology Stack
+- **Core**: HTML5, Vanilla JavaScript (Custom MSX Interpreter)
+- **Styling**: Vanilla CSS3 (Retro Monitor Styling)
+- **Environment**: Client-side Browser Engine
 
-- **HTML5 & CSS3**: For layout and retro styling.
-- **Vanilla JavaScript**: Core interpreter and logic implementation.
+---
 
-## 📄 License
-
-This project is free to use.
+## Contact & Author
+- Dev Team Lead at IDDQD Internet. E-solution & E-game Lead. Bushwhacking Code Shooter. Currently executing mandates as Choi’s Schemer.
+- HQ (EN): https://en.iddqd.kr/
+- GitHub: https://github.com/iddqd-park
